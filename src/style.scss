@@ -155,25 +155,52 @@
       flex: 2;
       background-color: #73dff0;
 
-      .chatInfo{
+      .chatInfo {
         height: 50px;
         background-color: #366870;
-        display:flex;
+        display: flex;
         justify-content: space-between;
         padding: 10px;
         color: lightgray;
       }
-      .messages{
-        background-color: white;
+      .messages {
+        background-color: grey;
         padding: 10px;
         height: calc(100% - 160px);
-
       }
-      .input{
+      .input {
         height: 50px;
-        background-color: grey;
-        padding:10px;
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        input {
+          width: 100%;
+          border: none;
+          outline: none;
+          color: #366870;
+          font-size: 18px;
+          &::placeholder {
+            color: lightgray;
+          }
+        }
+        .send {
+          display: flex;
+          align-items: center;
+          gap: 10px;
 
+          span{
+            cursor: pointer;
+          }
+          button{
+            border: none;
+            padding: 10px 15px ;
+            color: white;
+            background-color: #66c8d6;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
