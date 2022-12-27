@@ -128,7 +128,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: white;
+            color: white;font-weight: bold;
             cursor: pointer;
 
             &:hover{
@@ -139,6 +139,16 @@
                 height:50px;
                 border-radius: 50%;
                 object-fit: cover;
+            }
+            .userChatInfo{
+                span{
+font-size: 18px;
+font-weight:500px;
+                }
+                p{
+font-size: 14px;
+color:lightgray;
+                }
             }
         }
     }
