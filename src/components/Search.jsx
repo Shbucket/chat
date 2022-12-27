@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import image2 from '../img/shbucket.jpeg'
 
 const Search = () => {
   return (
-    <div>Search</div>
-  )
-}
+    <div className="search">
+      <div className="searchForm">
+        <input type="text" />
+      </div>
+      <div className="userChat">
+        <img src={image2} alt="" />
+        <div className="userChatInfo">
+          <span>Jane</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Search
+export default Search;
