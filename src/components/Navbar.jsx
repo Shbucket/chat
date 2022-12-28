@@ -1,5 +1,7 @@
 import React from 'react'
 import image from '../img/shbucket.jpeg'
+import {signOut} from 'firebase/auth'
+import { auth } from '../firebase'
 export const Navbar = () => {
   return (
     <div className='navbar'>
@@ -7,7 +9,7 @@ export const Navbar = () => {
       <div className="user">
         <img src={image} alt="" />
         <span>John</span>
-        <button>logout</button>
+        <button onClick={()=>signOut(auth)}>logout</button>
       </div>
     </div>
   )
