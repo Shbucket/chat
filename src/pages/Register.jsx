@@ -40,7 +40,7 @@ const Register = () => {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateProfile(res.user, {
-              displayName,
+             displayName,
               photoURL: downloadURL,
             });
             await setDoc(doc(db, "users", res.user.uid), {
