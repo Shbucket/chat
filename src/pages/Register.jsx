@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, storage } from "../firebase";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db, storage} from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore"; 
+import {useNavigate} from 'react-router-dom';
 
 const element = <FontAwesomeIcon icon={faImage} />;
 
 const Register = () => {
   const [err, setErr] = useState(false);
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const displayName = e.target[0].value;
@@ -24,8 +22,7 @@ const Register = () => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      const storage = getStorage();
-      const storageRef = ref(storage, "images/rivers.jpg");
+      const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -34,37 +31,39 @@ const Register = () => {
       // 2. Error observer, called on failure
       // 3. Completion observer, called on successful completion
       uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
-        },
+       
         (error) => {
-          // Handle unsuccessful uploads
+        setErr(true)  
         },
         () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
+              navigate("/");
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            
+
           });
         }
       );
     } catch (err) {
+      const errCode = err.code
+      const errMessage = err.message
+      console.log(errCode, errMessage)
       setErr(true);
     }
   };
+
   return (
     <div className="formContainer">
       <div className="formWrapper">
