@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage} from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 const element = <FontAwesomeIcon icon={faImage} />;
 
@@ -49,9 +49,9 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             });
-              navigate("/");
+            navigate("/");
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            
+               
 
           });
         }
@@ -81,7 +81,9 @@ const Register = () => {
           <button>Sign Up</button>
           {err && <span>Something went wrong</span>}
         </form>
-        <p>Already have an account? Login</p>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );
