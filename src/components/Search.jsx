@@ -4,11 +4,12 @@ import {
   collection,
   query,
   where,
-  getDoc,
+  getDocs,
   setDoc,
   updateDoc,
   serverTimestamp,
   doc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
@@ -16,7 +17,9 @@ const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+
   const { currentUser } = useContext(AuthContext);
+
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
@@ -24,11 +27,14 @@ const Search = () => {
     );
 
     try {
-      const querySnapshot = await getDoc(q);
+      const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
       });
     } catch (err) {
+      const errMessage = err.message;
+      const errCode = err.code;
+      console.log(errMessage, errCode);
       setErr(true);
     }
   };
@@ -43,6 +49,7 @@ const Search = () => {
         : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
+
       if (!res.exists()) {
         //create a chat in chats collection
 
@@ -71,6 +78,8 @@ const Search = () => {
       const errCode = err.code;
       console.log(errMessage, errCode);
     }
+    setUser(null)
+    setUsername('')
   };
   return (
     <div className="search">
@@ -80,6 +89,7 @@ const Search = () => {
           placeholder="Search For User"
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
+          value={username}
         />
       </div>
       {err && <span>User not found</span>}
