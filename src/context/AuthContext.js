@@ -1,7 +1,6 @@
 import { auth } from "../firebase";
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { unstable_batchedUpdates } from "react-dom";
 
 export const AuthContext = createContext();
 

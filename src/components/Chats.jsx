@@ -1,31 +1,35 @@
-import React from 'react'
-import image from '../img/shbucket.jpeg'
+import { doc, onSnapshot } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { db } from "../firebase";
 
 export const Chats = () => {
+  const [chats, setChats] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+      return () => {
+        unsub();
+      };
+    };
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+  console.log(Object.entries(chats));
   return (
     <div className="chats">
-      <div className="userChat">
-        <img src={image} alt="" />
-        <div className="userChatInfo">
-          <span>Jan</span>
-          <p>hello</p>
+      {Object.entries(chats)?.map((chat) => (
+        <div className="userChat">
+          <img src={chat[1].userInfo.photoURL} alt="" />
+          <div className="userChatInfo">
+            <span>{chat[1].userInfo.displayName}</span>
+            <p>{chat[1].userInfo.lastMessage?.text}</p>
+          </div>
         </div>
-      </div>
-      <div className="userChat">
-        <img src={image} alt="" />
-        <div className="userChatInfo">
-          <span>Jan</span>
-          <p>hello</p>
-        </div>
-      </div>
-      <div className="userChat">
-        <img src={image} alt="" />
-        <div className="userChatInfo">
-          <span>Jan</span>
-          <p>hello</p>
-        </div>
-      </div>
+      ))}
     </div>
   );
-}
-export default Chats
+};
+export default Chats;

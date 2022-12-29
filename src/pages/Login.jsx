@@ -1,10 +1,7 @@
 import { React, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate,Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-const element = <FontAwesomeIcon icon={faImage} />;
 
 const Login = () => {
   const [err, setErr] = useState(false);
