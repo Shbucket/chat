@@ -13,13 +13,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
-
+ const { dispatch } = useContext(ChatContext);
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
@@ -41,7 +42,8 @@ const Search = () => {
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
-  const handleSelect = async () => {
+  const handleSelect = async (u) => {
+     dispatch({ type: "CHANGE_USER", payload: u });
     //check whether the chats in firestore exists, if not create
     const combinedId =
       currentUser.uid > user.uid

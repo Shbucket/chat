@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 import image from "../img/shbucket.jpeg";
 
-export const Message = () => {
+export const Message = ({Message}) => {
+  const {currentUser}= useContext(AuthContext)
+  const {data}= useContext(ChatContext)
   return (
     <div className="message owner">
       <div className="messageInfo">
