@@ -8,7 +8,7 @@ export const Message = ({Message}) => {
   const {data}= useContext(ChatContext)
   return (
     <div className="message owner">
-      <div className="messageInfo">
+      {/*<div className="messageInfo">
         <img src={image} alt="" />
         <span>just now</span>
       </div>
@@ -16,6 +16,7 @@ export const Message = ({Message}) => {
         <p>hello</p>
         <img src={image} alt="" />
       </div>
+    </div>*/}
     </div>
   );
 };
