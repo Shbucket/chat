@@ -2,10 +2,12 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
-
+body{
+  background-color: #2F4A70;
+}
 
 .formContainer {
-  background-color: #73dff0;
+  background-color: #4A74B0;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -19,12 +21,12 @@
     gap: 10px;
     align-items: center;
     .logo {
-      color: #366870;
+      color: black;
       font-weight: bold;
       font-size: 24px;
     }
     .title {
-      color: #366870;
+      color: black  ;
       font-size: 12px;
     }
 
@@ -36,13 +38,13 @@
         padding: 15px;
         border: none;
         width: 250px;
-        border-bottom: 1px solid #366870;
+        border-bottom: 1px solid black;
         &::placeholder {
           color: rgb(175, 175, 175);
         }
       }
       button {
-        background-color: #366870;
+        background-color: #6AA7FC;
         color: white;
         padding: 10px;
         border: none;
@@ -52,27 +54,27 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color: #366870;
+        color: black;
         font-size: 25px;
         cursor: pointer;
       }
     }
     p {
-      color: #366870;
+      color: black;
       font-size: 12px;
       margin-top: 10px;
     }
   }
 }
 .home {
-  background-color: #66c8d6;
-  height: 100vh;
+  background-color: #4A74B0;
+  height: 100vmin;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .container {
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 10px;
     width: 65%;
     height: 80%;
@@ -80,9 +82,9 @@
     overflow: hidden;
     .sidebar {
       flex: 1;
-      background-color: #54a4b0;
+      background-color: #5A8ED6;
       .navbar {
-        background-color: #366870;
+        background-color: #2F4A70;
         display: flex;
         align-items: center;
         height: 50px;
@@ -112,7 +114,7 @@
         }
       }
       .search {
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid black;
         .searchForm {
           padding: 10px;
           input {
@@ -122,7 +124,7 @@
             outline: none;
 
             &::placeholder {
-              color: lightgray;
+              color: white;
             }
           }
         }
@@ -137,7 +139,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #366870;
+          background-color: #2F4A70;
         }
         img {
           width: 50px;
@@ -152,7 +154,7 @@
           }
           p {
             font-size: 14px;
-            color: lightgray;
+            color: white;
           }
         }
       }
@@ -163,14 +165,14 @@
 
       .chatInfo {
         height: 50px;
-        background-color: #366870;
+        background-color: #2F4A70;
         display: flex;
         justify-content: space-between;
         padding: 10px;
-        color: lightgray;
+        color: white;
       }
       .messages {
-        background-color: grey;
+        background-color:#6AA7FC ;
         padding: 10px;
         height: calc(100% - 160px);
         overflow: scroll;
@@ -181,7 +183,7 @@
           .messageInfo {
             display: flex;
             flex-direction: column;
-            color: gray;
+            color: black;
             font-weight: 300;
             img {
               width: 40px;
@@ -211,7 +213,7 @@
                 align-items: flex-end;
             
             p{
-                background-color: #366870;
+                background-color: black;
                 color: white;
                 border-radius: 10px 0px 10px 10px;
             }
@@ -230,7 +232,7 @@
           width: 100%;
           border: none;
           outline: none;
-          color: #366870;
+          color: black;
           font-size: 18px;
           &::placeholder {
             color: lightgray;

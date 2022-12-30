@@ -20,7 +20,7 @@ const Search = () => {
   const [err, setErr] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
- const { dispatch } = useContext(ChatContext);
+  const { dispatch } = useContext(ChatContext);
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
@@ -30,6 +30,7 @@ const Search = () => {
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
+        console.log(doc.data())
         setUser(doc.data());
       });
     } catch (err) {
@@ -82,6 +83,7 @@ const Search = () => {
     }
     setUser(null)
     setUsername('')
+    console.log(user.uid)
   };
   return (
     <div className="search">
@@ -95,14 +97,14 @@ const Search = () => {
         />
       </div>
       {err && <span>User not found</span>}
-      {user && (
+      {user &&
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
             <span>{user.displayName}</span>
           </div>
         </div>
-      )}
+      }
     </div>
   );
 };
