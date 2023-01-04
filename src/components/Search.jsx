@@ -30,7 +30,7 @@ const Search = () => {
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        console.log(doc.data())
+        console.log(doc.data());
         setUser(doc.data());
       });
     } catch (err) {
@@ -41,10 +41,10 @@ const Search = () => {
     }
   };
   const handleKey = (e) => {
-    e.code === "0" || 'enter' && handleSearch();
+    e.code === 0 || ("enter" && handleSearch());
   };
   const handleSelect = async (u) => {
-     dispatch({ type: "CHANGE_USER", payload: u });
+    dispatch({ type: "CHANGE_USER", payload: u });
     //check whether the chats in firestore exists, if not create
     const combinedId =
       currentUser.uid > user.uid
@@ -81,9 +81,9 @@ const Search = () => {
       const errCode = err.code;
       console.log(errMessage, errCode);
     }
-    setUser(null)
-    setUsername('')
-    console.log(user.uid)
+    setUser(null);
+    setUsername("");
+    console.log(user.uid);
   };
   return (
     <div className="search">
@@ -97,14 +97,14 @@ const Search = () => {
         />
       </div>
       {err && <span>User not found</span>}
-      {user &&
+      {user && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
             <span>{user.displayName}</span>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };
