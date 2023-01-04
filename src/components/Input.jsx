@@ -15,7 +15,6 @@ import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const image = <FontAwesomeIcon icon={faImage} />;
-const clip = <FontAwesomeIcon icon={faPaperclip} />;
 
 export const Input = () => {
   const [text, setText] = useState("");
@@ -82,7 +81,7 @@ export const Input = () => {
         value={text}
       />
       <div className="send">
-        <span>{clip}</span>
+
         <input
           type="file"
           style={{ display: "none" }}
