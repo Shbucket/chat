@@ -9,8 +9,11 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <Navbar />
+
       <Search />
-      <Chats />
+      <div className="scroll">
+        <Chats />
+      </div>
     </div>
   );
 };

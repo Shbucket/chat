@@ -6,7 +6,7 @@ body {
   min-height: 100%;
   background-color: #4a74b0;
 }
-@mixin laptop{
+@mixin laptop {
   @media screen and (min-width: 769px) {
     @content;
   }
@@ -23,7 +23,6 @@ body {
     @content;
   }
 }
-
 
 .formContainer {
   height: 100vh;
@@ -106,6 +105,10 @@ body {
       background-color: #5a8ed6;
       @include mobile {
         width: 25%;
+      }
+      .scroll {
+        height: 100%;
+        overflow: scroll;
       }
       .navbar {
         background-color: #2f4a70;
@@ -212,21 +215,22 @@ body {
         justify-content: space-between;
         padding: 10px;
         color: white;
-        @include laptop{
-          button{
+        @include laptop {
+          button {
             display: none;
           }
         }
-       @include mobile{ button {
-          background-color: #73dff0;
-          border-radius: 5px;
-          height: 3em;
-          color: white;
-          font: size 10px;
-          border: none;
-          cursor: pointer;
+        @include mobile {
+          button {
+            background-color: #73dff0;
+            border-radius: 5px;
+            height: 3em;
+            color: white;
+            font: size 10px;
+            border: none;
+            cursor: pointer;
+          }
         }
-      }
       }
       .messages {
         background-color: #6aa7fc;
