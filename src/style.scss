@@ -7,7 +7,7 @@ body {
   background-color: #4a74b0;
 }
 @mixin laptop{
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 769px) {
     @content;
   }
 }
@@ -17,6 +17,13 @@ body {
     @content;
   }
 }
+
+@mixin mobileS {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
+
 
 .formContainer {
   height: 100vh;
@@ -113,11 +120,15 @@ body {
           @include mobile {
             font-size: 0.8em;
           }
+          @include mobileS {
+            font-size: 0.6em;
+          }
         }
         .user {
           display: flex;
           gap: 10px;
-          @include mobile {
+          @include mobileS {
+            font-size: 0.8em;
           }
           img {
             background-color: white;
@@ -185,7 +196,7 @@ body {
           }
           p {
             font-size: 14px;
-            color: white;
+            color: black;
           }
         }
       }
