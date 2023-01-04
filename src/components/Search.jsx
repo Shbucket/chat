@@ -41,7 +41,7 @@ const Search = () => {
     }
   };
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
+    e.code === "0" || 'enter' && handleSearch();
   };
   const handleSelect = async (u) => {
      dispatch({ type: "CHANGE_USER", payload: u });
