@@ -7,9 +7,7 @@ export const Message = ({ message }) => {
   const { data } = useContext(ChatContext);
   const ref = useRef();
 
-  useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+  
 
   return (
     <div
@@ -25,7 +23,11 @@ export const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>just now</span>
+        <span>
+          {message.senderId === currentUser.uid
+            ? currentUser.displayName
+            : data.user.displayName}
+        </span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
