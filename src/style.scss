@@ -6,6 +6,12 @@ body {
   min-height: 100%;
   background-color: #4a74b0;
 }
+@mixin laptop{
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
 @mixin mobile {
   @media screen and (max-width: 768px) {
     @content;
@@ -195,7 +201,12 @@ body {
         justify-content: space-between;
         padding: 10px;
         color: white;
-        button {
+        @include laptop{
+          button{
+            display: none;
+          }
+        }
+       @include mobile{ button {
           background-color: #73dff0;
           border-radius: 5px;
           height: 3em;
@@ -204,6 +215,7 @@ body {
           border: none;
           cursor: pointer;
         }
+      }
       }
       .messages {
         background-color: #6aa7fc;
