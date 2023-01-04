@@ -1,13 +1,18 @@
-
-*{
-    font-family: 'Poppins', sans-serif;
+* {
+  font-family: "Poppins", sans-serif;
 }
-body{
-  background-color: #2F4A70;
+html,
+body {
+  min-height: 100%;
+  background-color: #4a74b0;
+}
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
 }
 
 .formContainer {
-  background-color: #4A74B0;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -26,7 +31,7 @@ body{
       font-size: 24px;
     }
     .title {
-      color: black  ;
+      color: black;
       font-size: 12px;
     }
 
@@ -44,7 +49,7 @@ body{
         }
       }
       button {
-        background-color: #6AA7FC;
+        background-color: #6aa7fc;
         color: white;
         padding: 10px;
         border: none;
@@ -67,24 +72,30 @@ body{
   }
 }
 .home {
-  background-color: #4A74B0;
+  background-color: #4a74b0;
   height: 100vmin;
   display: flex;
   align-items: center;
   justify-content: center;
+  @include mobile {
+    height: 100vmax;
+  }
 
   .container {
     border: 1px solid black;
     border-radius: 10px;
-    width: 65%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     display: flex;
     overflow: hidden;
     .sidebar {
       flex: 1;
-      background-color: #5A8ED6;
+      background-color: #5a8ed6;
+      @include mobile {
+        width: 25%;
+      }
       .navbar {
-        background-color: #2F4A70;
+        background-color: #2f4a70;
         display: flex;
         align-items: center;
         height: 50px;
@@ -93,16 +104,24 @@ body{
         color: white;
         .logo {
           font-weight: bold;
+          @include mobile {
+            font-size: 0.8em;
+          }
         }
         .user {
           display: flex;
           gap: 10px;
+          @include mobile {
+          }
           img {
             background-color: white;
             height: 24px;
             width: 24px;
             border-radius: 50%;
             object-fit: cover;
+            @include mobile {
+              display: none;
+            }
           }
           button {
             background-color: #73dff0;
@@ -110,6 +129,9 @@ body{
             font: size 10px;
             border: none;
             cursor: pointer;
+            @include mobile {
+              display: none;
+            }
           }
         }
       }
@@ -139,13 +161,16 @@ body{
         cursor: pointer;
 
         &:hover {
-          background-color: #2F4A70;
+          background-color: #2f4a70;
         }
         img {
           width: 50px;
           height: 50px;
           border-radius: 50%;
           object-fit: cover;
+          @include mobile {
+            display: none;
+          }
         }
         .userChatInfo {
           span {
@@ -165,14 +190,23 @@ body{
 
       .chatInfo {
         height: 50px;
-        background-color: #2F4A70;
+        background-color: #2f4a70;
         display: flex;
         justify-content: space-between;
         padding: 10px;
         color: white;
+        button {
+          background-color: #73dff0;
+          border-radius: 5px;
+          height: 3em;
+          color: white;
+          font: size 10px;
+          border: none;
+          cursor: pointer;
+        }
       }
       .messages {
-        background-color:#6AA7FC ;
+        background-color: #6aa7fc;
         padding: 10px;
         height: calc(100% - 160px);
         overflow: scroll;
@@ -197,27 +231,27 @@ body{
             display: flex;
             flex-direction: column;
             gap: 10px;
-            p{
-                background-color: white;
-                padding: 10px 20px;
-                border-radius: 0px 10px 10px 10px ;
-                max-width:max-content ;
+            p {
+              background-color: white;
+              padding: 10px 20px;
+              border-radius: 0px 10px 10px 10px;
+              max-width: max-content;
             }
             img {
               width: 50%;
             }
           }
-          &.owner{
+          &.owner {
             flex-direction: row-reverse;
-            .messageContent{
-                align-items: flex-end;
-            
-            p{
+            .messageContent {
+              align-items: flex-end;
+
+              p {
                 background-color: black;
                 color: white;
                 border-radius: 10px 0px 10px 10px;
+              }
             }
-        }
           }
         }
       }
