@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import {
@@ -76,7 +76,7 @@ export const Input = () => {
     setImg(null);
   };
 const handleEnter = (e) => {
-  e.code === 0 || "enter" && handleSend();
+ ( e.code == "Enter" || 0 ) && handleSend();
 };
   return (
     <div className="input">
@@ -84,6 +84,7 @@ const handleEnter = (e) => {
         type="text"
         id="text"
         placeholder="Type something..."
+        onKeyPress={handleEnter}
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
