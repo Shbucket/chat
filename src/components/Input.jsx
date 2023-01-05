@@ -21,9 +21,10 @@ export const Input = () => {
   const [img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+
   const handleSend = async () => {
-         const enter = document.getElementById("text");
-         enter.value = "";
+    const enter = document.getElementById("text");
+    enter.value = "";
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -70,12 +71,13 @@ export const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
-   
-    setText('');
+    
+    setText("");
     setImg(null);
-
   };
-
+const handleEnter = (e) => {
+  e.code === 0 || "enter" && handleSend();
+};
   return (
     <div className="input">
       <input
@@ -95,7 +97,10 @@ export const Input = () => {
         <label htmlFor="file">
           <span>{image}</span>
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button
+        onClick={handleSend}>
+          Send
+        </button>
       </div>
     </div>
   );
