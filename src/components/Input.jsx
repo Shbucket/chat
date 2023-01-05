@@ -76,7 +76,7 @@ export const Input = () => {
     setImg(null);
   };
 const handleEnter = (e) => {
- ( e.code == "Enter" || 0 ) && handleSend();
+ ( e.code == "Enter" || 13 ) && handleSend();
 };
   return (
     <div className="input">
