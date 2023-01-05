@@ -22,6 +22,8 @@ export const Input = () => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const handleSend = async () => {
+         const enter = document.getElementById("text");
+         enter.value = "";
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -68,20 +70,22 @@ export const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
-    setText("");
+   
+    setText('');
     setImg(null);
+
   };
 
   return (
     <div className="input">
       <input
         type="text"
+        id="text"
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
       <div className="send">
-
         <input
           type="file"
           style={{ display: "none" }}
