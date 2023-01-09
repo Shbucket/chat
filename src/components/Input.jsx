@@ -71,13 +71,13 @@ export const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
-    
+
     setText("");
     setImg(null);
   };
-const handleEnter = (e) => {
- ( e.code == "Enter" || 13 ) && handleSend();
-};
+  const handleEnter = (e) => {
+    e.code == "Enter" && handleSend();
+  };
   return (
     <div className="input">
       <input
@@ -98,10 +98,7 @@ const handleEnter = (e) => {
         <label htmlFor="file">
           <span>{image}</span>
         </label>
-        <button
-        onClick={handleSend}>
-          Send
-        </button>
+        <button onClick={handleSend}>Send</button>
       </div>
     </div>
   );
